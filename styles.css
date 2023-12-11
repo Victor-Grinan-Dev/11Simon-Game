@@ -1,3 +1,6 @@
+*{
+  touch-action: manipulation;
+}
 
 
 body {
@@ -27,17 +30,12 @@ body {
 .play-btn {
   font-family: 'Press Start 2P', cursive;
   font-size: 3rem;
-  margin:  5%;
   color: #FEF2BF;
   text-align: center;
 }
 
-#subtitle,
-.play-btn{
+#subtitle{
   font-size: 1rem;
-}
-
-.play-btn{
   color: black;
   background-color: white;
   border: 40px solid black;
@@ -52,11 +50,12 @@ body {
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 21%;
+  top: 24%;
   bottom: 0;
   text-align: center;
 
   cursor: pointer;
+  z-index: 10;
 }
 
 .game{
@@ -80,7 +79,7 @@ body {
   border-radius: 100% 0 0 0;
   /* margin: 0 10px 10px 0; */
 }
-.green-click{
+#green.pressed{
   background-color: rgb(150, 255, 150) !important;
 }
 
@@ -90,7 +89,7 @@ body {
   /* margin: 0 0 10px 10px; */
 }
 
-.red-click{
+#red.pressed{
   background-color: rgb(255, 150, 150) !important;
 }
 
@@ -100,7 +99,7 @@ body {
   /* margin: 10px 10px 0 0; */
 }
 
-.yellow-click{
+#yellow.pressed{
   background-color: rgb(255, 255, 150) !important;
 }
 
@@ -110,16 +109,8 @@ body {
   /* margin: 10px 0 0 10px; */
 }
 
-.blue-click{
+#blue.pressed{
   background-color: rgb(150, 150, 255) !important;
-}
-
-/* #level-title,
-#subtitle {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 3rem;
-  margin:  5%;
-  color: #FEF2BF;
 }
 
 #subtitle{
@@ -148,27 +139,11 @@ body {
   opacity: 0.8;
 }
 
-.red {
-  background-color: red;
-}
-
-.green {
-  background-color: green;
-}
-
-.blue {
-  background-color: blue;
-}
-
-.yellow {
-  background-color: yellow;
-}
-
-.pressed {
+/* .pressed {
   box-shadow: 0 0 20px white;
   background-color: grey;
 
-}
+} */
 
 .blink{
   transform: scale(1.2);
@@ -176,4 +151,4 @@ body {
 
 .invisible{
   visibility: hidden;
-} */
+} 

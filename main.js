@@ -22,12 +22,24 @@ $("#blue").click(() => {
     checkClicked("blue");
   }
 });
+$("play-btn").click(() => {
+  if (!isGameOver) {
+    clicked("blue");
+    checkClicked("blue");
+  }
+});
 
 const yellowSound = new Audio("./sounds/yellow.mp3");
 const greenSound = new Audio("./sounds/green.mp3");
 const redSound = new Audio("./sounds/red.mp3");
 const blueSound = new Audio("./sounds/blue.mp3");
 const wrongSound = new Audio("./sounds/wrong.mp3");
+
+yellowSound.volume = 0.4;
+greenSound.volume = 0.4;
+redSound.volume = 0.4;
+blueSound.volume = 0.4;
+wrongSound.volume = 0.1;
 
 let isGameOver = true;
 
@@ -96,7 +108,7 @@ const checkClicked = (btn) => {
   if (btn === pattern[clickNum] && !isGameOver) {
     playAudio(sounds[btn]);
     riseClickNum();
-
+    $("#subtitle").text(`${clickNum}`);
     if (clickNum === pattern.length && !isGameOver) {
       setTimeout(() => {
         nextBtn();
@@ -107,8 +119,8 @@ const checkClicked = (btn) => {
     resetClickNum();
     resetPatern();
     $("#level-title").text("GAME OVER!");
-    $("#subtitle").removeClass("invisible");
-    $("#subtitle").text("Tap any where to reload game");
+    // $("#subtitle").removeClass("invisible");
+    $("#subtitle").text("Reload");
     setTimeout(() => {
       isGameOver = true;
       resetClickNum();
@@ -122,9 +134,9 @@ const updateLevel = () => {
   $("#level-title").text(`Level ${pattern.length}`);
 };
 
-$("html").click(() => {
+$(".play-btn").click(() => {
   if (isGameOver) {
-    $("#subtitle").addClass("invisible");
+    $("#subtitle").text(`${clickNum}`);
     isGameOver = false;
     nextBtn();
   }
