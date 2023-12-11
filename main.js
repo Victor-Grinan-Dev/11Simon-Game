@@ -29,6 +29,11 @@ $("play-btn").click(() => {
   }
 });
 
+//TODO: the center number should say clicks left to be correct. then show wait during next blink
+//TODO: disable sound option.
+//TODO: disable show number of clicks left option
+//TODO: change each level to have 10 items in the patern then increment the game speed.
+
 const yellowSound = new Audio("./sounds/yellow.mp3");
 const greenSound = new Audio("./sounds/green.mp3");
 const redSound = new Audio("./sounds/red.mp3");
