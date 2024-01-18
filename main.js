@@ -1,28 +1,33 @@
-$("#yellow").click(() => {
+$("#yellow").click((e) => {
+  e.preventDefault();
   if (!isGameOver) {
     clicked("yellow");
     checkClicked("yellow");
   }
 });
-$("#green").click(() => {
+$("#green").click((e) => {
+  e.preventDefault();
   if (!isGameOver) {
     clicked("green");
     checkClicked("green");
   }
 });
-$("#red").click(() => {
+$("#red").click((e) => {
+  e.preventDefault();
   if (!isGameOver) {
     clicked("red");
     checkClicked("red");
   }
 });
-$("#blue").click(() => {
+$("#blue").click((e) => {
+  e.preventDefault();
   if (!isGameOver) {
     clicked("blue");
     checkClicked("blue");
   }
 });
-$("play-btn").click(() => {
+$("play-btn").click((e) => {
+  e.preventDefault();
   if (!isGameOver) {
     clicked("blue");
     checkClicked("blue");
@@ -40,15 +45,18 @@ const redSound = new Audio("./sounds/red.mp3");
 const blueSound = new Audio("./sounds/blue.mp3");
 const wrongSound = new Audio("./sounds/wrong.mp3");
 
-yellowSound.volume = 0.4;
-greenSound.volume = 0.4;
-redSound.volume = 0.4;
-blueSound.volume = 0.4;
-wrongSound.volume = 0.1;
+yellowSound.volume = 0.05;
+greenSound.volume = 0.05;
+redSound.volume = 0.05;
+blueSound.volume = 0.05;
+wrongSound.volume = 0.01;
 
 let isGameOver = true;
 
 const buttons = ["yellow", "green", "red", "blue"];
+
+let lastPlayed;
+
 const sounds = {
   yellow: yellowSound,
   green: greenSound,
@@ -62,6 +70,14 @@ let clickNum = 0;
 
 const randomBtn = () => {
   return buttons[Math.floor(Math.random() * (buttons.length - 1))];
+};
+
+const noRepeatBtn = () => {
+  let choice;
+  do {
+    choice = randomBtn();
+  } while (choice === lastPlayed);
+  return choice;
 };
 
 const resetPatern = () => {
@@ -89,7 +105,8 @@ const clicked = (btn) => {
 };
 
 const nextBtn = () => {
-  const nextBtn = randomBtn();
+  const nextBtn = noRepeatBtn();
+  lastPlayed = nextBtn;
   blink(nextBtn);
   populatePatern(nextBtn);
   playAudio(sounds[nextBtn]);
